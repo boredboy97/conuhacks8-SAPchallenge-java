@@ -6,18 +6,7 @@ public class WinterTireScheduler {
 
     public static void main(String[] args) 
     {
-
-        Date date1 = new Date(1,1,2001,5,5);
-
-        Date date2 = new Date(2,2,2023,2,7);
-    
-        System.out.println(date1);
-
-        Customer Boaty = new Customer(date1,date2,"Car");
-
-        System.out.println(Boaty);
-
-    
+        //CSV File Scan
         
         String file = "WinterTireScheduler//datafile.csv";
         BufferedReader reader = null;
@@ -33,7 +22,12 @@ public class WinterTireScheduler {
                 listOfCustomers.add(listOfCustomers.size(), fixedLengthList);
                 
             }
-            System.out.println(listOfCustomers);
+
+            for(int i=0;i<listOfCustomers.size();i++)
+            {
+                System.out.println(listOfCustomers.get(i));
+            }
+            
             
         }
         catch (Exception e) {
@@ -47,6 +41,8 @@ public class WinterTireScheduler {
             }
         }
 
+
+        
 
     }
 }
