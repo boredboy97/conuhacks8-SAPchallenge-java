@@ -15,10 +15,12 @@ public class Customer
         this.dateRes = dateRes;
         this.vehicleType = vehicleType;
     }
+
     
     public String toString() {
         return dateCalled.toString() + " | " + dateRes.toString() + " | " + vehicleType;
     }
+
 
      
 }
