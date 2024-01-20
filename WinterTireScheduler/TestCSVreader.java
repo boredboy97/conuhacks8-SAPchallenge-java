@@ -1,23 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-public class WinterTireScheduler {
-
-
-    public static void main(String[] args) 
-    {
-
-        Date date1 = new Date(1,1,2001,5,5);
-
-        Date date2 = new Date(2,2,2023,2,7);
-    
-        System.out.println(date1);
-
-        Customer Boaty = new Customer(date1,date2,"Car");
-
-        System.out.println(Boaty);
-
-    
+public class TestCSVreader {
+    public static void main(String[] args) {
         
         String file = "WinterTireScheduler//datafile.csv";
         BufferedReader reader = null;
@@ -34,7 +19,7 @@ public class WinterTireScheduler {
                 
             }
             System.out.println(listOfCustomers);
-            
+            System.out.println(listOfCustomers.size());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -46,8 +31,8 @@ public class WinterTireScheduler {
                 e.printStackTrace();
             }
         }
-
-
     }
-}
 
+
+    
+}
