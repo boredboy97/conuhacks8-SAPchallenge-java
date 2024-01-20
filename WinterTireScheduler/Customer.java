@@ -10,7 +10,9 @@ public class Customer {
         this.dateAppointment = null;
         this.type = null;
     }
+
     
+
 
      
 }
