@@ -1,7 +1,7 @@
 public class WinterTireScheduler {
 
     public static void main(String[] args) {
-        System.out.println("Hello bitches nice");
+        System.out.println("Hello bitches nice ass");
     
     }
 }
