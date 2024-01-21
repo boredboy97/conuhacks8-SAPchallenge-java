@@ -2,8 +2,6 @@ import java.text.SimpleDateFormat;
 
 public class Date {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy - hh:mm");
-
     // Attributes:
 
     private int d;
@@ -25,7 +23,7 @@ public class Date {
     }
 
     // Custom constructor:
-    public Date(int d, int M, int y, int h, int m) {
+    public Date(int y, int M, int d, int h, int m) {
         this.d = d;
         this.M = M;
         this.y = y;
@@ -33,9 +31,19 @@ public class Date {
         this.m = m;
     }
 
+
     // toString method:
     public String toString() {
-        return sdf.format(new Date());
-    }
+       
+            // Format the variables that might need a 0 infront
+            String formattedMonth = String.format("%02d", M);
+            String formattedDay = String.format("%02d", d);
+            String formattedHour = String.format("%02d", h);
+            String formattedMin = String.format("%02d", m);
+    
+            
+            return y + "/" + formattedDay + "/" + formattedMonth + " - " + formattedHour + ":" + formattedMin;
+        }
+    
+ }
 
-}
