@@ -1,40 +1,49 @@
+import java.text.SimpleDateFormat;
+
 public class Date {
 
     // Attributes:
 
-    private int day;
-    private int month;
-    private int year;
+    private int d;
+    private int M;
+    private int y;
 
-    private int hour;
-    private int min;
+    private int h;
+    private int m;
 
     // Constructors:
 
     // Default constructor:
     public Date() {
-        this.day = 0;
-        this.month = 0;
-        this.year = 0;
-        this.hour = 0;
-        this.min = 0;
+        this.d = 0;
+        this.M = 0;
+        this.y = 0;
+        this.h = 0;
+        this.m = 0;
     }
 
     // Custom constructor:
-    public Date(int day, int month, int year, int hour, int min) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
-        this.hour = hour;
-        this.min = min;
+    public Date(int y, int M, int d, int h, int m) {
+        this.d = d;
+        this.M = M;
+        this.y = y;
+        this.h = h;
+        this.m = m;
     }
+
 
     // toString method:
     public String toString() {
-        if (day < 10 && day >= 0 && month < 10 && month >= 0 && hour < 10 && hour >= 0 && min < 10 && min >= 0)
-			return "0" + day + "/0" + month + "/" + year + " - 0" + hour + ":0" + min;
-		else
-			return day + "/" + month + "/" + year + " - " + hour + ":" + min;
-    }
+       
+            // Format the variables that might need a 0 infront
+            String formattedMonth = String.format("%02d", M);
+            String formattedDay = String.format("%02d", d);
+            String formattedHour = String.format("%02d", h);
+            String formattedMin = String.format("%02d", m);
+    
+            
+            return y + "/" + formattedDay + "/" + formattedMonth + " - " + formattedHour + ":" + formattedMin;
+        }
+    
+ }
 
-}

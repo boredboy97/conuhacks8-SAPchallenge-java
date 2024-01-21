@@ -6,8 +6,10 @@ public class WinterTireScheduler {
 
     public static void main(String[] args) 
     {
+
         //CSV File Scan
         
+
         String file = "WinterTireScheduler//datafile.csv";
         BufferedReader reader = null;
         String line = "";
