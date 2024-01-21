@@ -66,63 +66,110 @@ public class WinterTireScheduler
         
         //CUSTOMER ARRAYS DONE
 
-        //INDIVIDUAL DATE AND VEHICLE ATTRIBUTE ARRAYS
-
-        LocalDateTime[] DCArray = new LocalDateTime[listOfCustomers.size()];
-        LocalDateTime[] RESArray = new LocalDateTime[listOfCustomers.size()];
-        String[] VEHArray = new String[listOfCustomers.size()];
-
-        for(int i=0;i<listOfCustomers.size();i++)
-        {
-            DCArray[i] = CustomerArray[i].getDateCalled();
-            RESArray[i] = CustomerArray[i].getDateRes();
-            VEHArray[i] = CustomerArray[i].getVehicleType();
-        }
-
-        //DONE
-
         //QUICKSORTING
 
-        quickSortDate(RESArray, 0, listOfCustomers.size()-1); 
-
-        quickSortDate(DCArray, 0, listOfCustomers.size()-1); 
+        quickSortCustomerRes(CustomerArray, 0, listOfCustomers.size()-1); 
 
         
+         
+        for (int i = 0; i < CustomerArray.length; i++)
+        {
+          while (CustomerArray[i].getDateRes().isEqual(CustomerArray[i+1].getDateRes()))
+          {
+            if (CustomerArray[i].getDateCalled().isBefore(CustomerArray[i+1].getDateCalled()))
+            {
+                Customer temp = CustomerArray[i];
+                CustomerArray[i] = CustomerArray[i+1];
+                CustomerArray[i+1] = temp;
+                break;
+            }
+            else if (CustomerArray[i].getDateCalled().isAfter(CustomerArray[i+1].getDateCalled()))
+            {
+                Customer temp = CustomerArray[i+1];
+                CustomerArray[i+1] = CustomerArray[i];
+                CustomerArray[i] = temp;
+                break;
+            }
+          }
 
+        }
+        
+        
+
+
+        for (int i = 0; i < listOfCustomers.size(); i ++)
+        {
+            System.out.println(CustomerArray[i]);
+        }
+        
 
     }
 
 
-    //QUICKSORT METHOD FOR DATES
-private static void quickSortDate (LocalDateTime[] dates,int start,int end)
+    //QUICKSORT METHOD FOR DATES RESERVED
+    private static void quickSortCustomerRes(Customer[] customers,int start,int end)
         {
             if(end <= start) 
                 return;
 
-            int pivot = partition(dates, start ,end);
-            quickSortDate(dates, start, pivot-1);
-            quickSortDate(dates, pivot+1,end);
+            int pivot = partitionRes(customers, start ,end);
+            quickSortCustomerRes(customers, start, pivot-1);
+            quickSortCustomerRes(customers, pivot+1,end);
         }
 
-        private static int partition(LocalDateTime[] dates, int start, int end)
+        private static int partitionRes(Customer[] customers, int start, int end)
         {
-            LocalDateTime pivot = dates[end];
+            Customer pivot = customers[end];
             int i = start-1;
 
             for(int j=start; j<= end-1;j++)
             {
-                if(dates[j].isBefore(pivot))
+                if(customers[j].getDateRes().isBefore(pivot.getDateRes()))
                 {
                     i++;
-                    LocalDateTime temp = dates[i];
-                    dates[i]=dates[j];
-                    dates[j]=temp;
+                    Customer temp = customers[i];
+                    customers[i]=customers[j];
+                    customers[j]=temp;
                 }
             }
             i++;
-            LocalDateTime temp = dates[i];
-            dates[i]=dates[end];
-            dates[end]=temp;
+            Customer temp = customers[i];
+            customers[i]=customers[end];
+            customers[end]=temp;
+
+            return i;
+        }
+
+    //QUICKSORT METHOD FOR DATES CALLED
+    private static void quickSortCustomerCalled(Customer[] customers,int start,int end)
+        {
+            if(end <= start) 
+                return;
+
+            int pivot = partitionCall(customers, start ,end);
+            quickSortCustomerRes(customers, start, pivot-1);
+            quickSortCustomerRes(customers, pivot+1,end);
+        }
+
+        private static int partitionCall(Customer[] customers, int start, int end)
+        {
+            Customer pivot = customers[end];
+            int i = start-1;
+
+            for(int j=start; j<= end-1;j++)
+            {
+                if(customers[j].getDateCalled().isBefore(pivot.getDateCalled()))
+                {
+                    i++;
+                    Customer temp = customers[i];
+                    customers[i]=customers[j];
+                    customers[j]=temp;
+                }
+            }
+            i++;
+            Customer temp = customers[i];
+            customers[i]=customers[end];
+            customers[end]=temp;
 
             return i;
         }
