@@ -65,7 +65,12 @@ public class Customer
         this.vehicleType = vehicleType;
         this.pushStatus = pushStatus;
     }
+<<<<<<< Updated upstream
 
+=======
+    
+    
+>>>>>>> Stashed changes
     public String toString() {
         return dateCalled.toString() + " | " + dateRes.toString() + " | " + vehicleType;
     }
