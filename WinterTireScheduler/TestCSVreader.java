@@ -18,7 +18,7 @@ public class TestCSVreader {
                 listOfCustomers.add(listOfCustomers.size(), fixedLengthList);
                 
             }
-            System.out.println(listOfCustomers);
+            System.out.println(listOfCustomers.get(0).get(0));
             System.out.println(listOfCustomers.size());
         }
         catch (Exception e) {
