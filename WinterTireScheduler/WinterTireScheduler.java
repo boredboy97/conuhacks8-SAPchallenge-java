@@ -6,8 +6,24 @@ public class WinterTireScheduler {
 
     public static void main(String[] args) 
     {
+
+        //------------------------------------------------------
+        //BOATY TESTING DATE CLASS
+
+
+        Date date1 = new Date(1,1,2022,5,5);
+        Date date2 = new Date(23,9,2022,13,7);
+
+        System.out.println(date1);
+        System.out.println(date2);
+
+
+
+         //------------------------------------------------------
         //CSV File Scan
         
+
+        /*  BOATY TESTING START
         String file = "WinterTireScheduler//datafile.csv";
         BufferedReader reader = null;
         String line = "";
@@ -40,7 +56,7 @@ public class WinterTireScheduler {
                 e.printStackTrace();
             }
         }
-
+       BOATY TESTING END     */
 
         
 
