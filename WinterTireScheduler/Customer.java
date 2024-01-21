@@ -6,7 +6,9 @@ public class Customer
 
     public Customer() //Default 
     {
-        
+        dateCalled = new Date();
+        dateRes = new Date();
+        vehicleType = "";
     }
 
     public Customer (Date dateCalled, Date dateRes, String vehicleType ) 
