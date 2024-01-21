@@ -5,12 +5,14 @@ public class Customer
     private LocalDateTime dateCalled;
     private LocalDateTime dateRes;
     private String vehicleType;
+    private int pushStatus;
 
     public Customer() //Default 
     {
         dateCalled = null;
         dateRes = null;
         vehicleType = "";
+        pushStatus = 0;
     }
 
     public LocalDateTime getDateCalled ()
@@ -31,11 +33,37 @@ public class Customer
 
     }
 
-    public Customer (LocalDateTime dateCalled, LocalDateTime dateRes, String vehicleType) 
+    public int getPushStatus ()
+    {
+        return(pushStatus);
+    }
+
+    public void setDateCalled(LocalDateTime date)
+    {
+        this.dateCalled = date;
+    }
+
+    public void setDateRes(LocalDateTime date)
+    {
+        this.dateRes = date;
+    }
+
+    public void setVehicleType(String type)
+    {
+        this.vehicleType = type;
+    }
+
+    public void setPushStatus(int pushStatus)
+    {
+        this.pushStatus = pushStatus;
+    }
+
+    public Customer (LocalDateTime dateCalled, LocalDateTime dateRes, String vehicleType, int pushStatus) 
     {
         this.dateCalled = dateCalled;
         this.dateRes = dateRes;
         this.vehicleType = vehicleType;
+        this.pushStatus = pushStatus;
     }
 
     public String toString() {
