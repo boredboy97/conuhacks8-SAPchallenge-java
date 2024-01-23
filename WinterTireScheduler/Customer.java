@@ -7,13 +7,20 @@ public class Customer
     private String vehicleType;
     private int pushStatus;
 
-    public Customer() //Default 
+    public Customer() //Default Constructor
     {
         dateCalled = null;
         dateRes = null;
         vehicleType = "";
         pushStatus = 0;
     }
+
+    public Customer(LocalDateTime dateCalled, LocalDateTime dateRes, String vehicleType) // Custom Constructor
+    {
+        this.dateCalled = dateCalled;
+        this.dateRes = dateRes;
+        this.vehicleType = vehicleType;
+    } 
 
     public LocalDateTime getDateCalled ()
     {
@@ -65,12 +72,6 @@ public class Customer
         this.vehicleType = vehicleType;
         this.pushStatus = pushStatus;
     }
-<<<<<<< Updated upstream
-
-=======
-    
-    
->>>>>>> Stashed changes
     public String toString() {
         return dateCalled.toString() + " | " + dateRes.toString() + " | " + vehicleType;
     }
