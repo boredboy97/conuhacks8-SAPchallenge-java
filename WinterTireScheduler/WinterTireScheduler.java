@@ -7,7 +7,9 @@ public class WinterTireScheduler {
 
     public static void main(String[] args) {
 
+        // ---------------
         // CSV FILE SCAN
+        // ---------------
 
         String file = "WinterTireScheduler//datafile.csv";
         BufferedReader reader = null;
@@ -42,7 +44,7 @@ public class WinterTireScheduler {
 
         // CUSTOMER OBJECT ARRAYS
 
-        Customer[] CustomerArray = new Customer[listOfCustomers.size()];
+        Customer[] customerArray = new Customer[listOfCustomers.size()];
 
         DateTimeFormatter dateFormatted = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.ENGLISH);
         LocalDateTime dateCalled, dateRes;
@@ -53,7 +55,7 @@ public class WinterTireScheduler {
             dateCalled = LocalDateTime.parse(listOfCustomers.get(i).get(0), dateFormatted);
             dateRes = LocalDateTime.parse(listOfCustomers.get(i).get(1), dateFormatted);
             vehicleType = listOfCustomers.get(i).get(2);
-            CustomerArray[i] = new Customer(dateCalled, dateRes, vehicleType);
+            customerArray[i] = new Customer(dateCalled, dateRes, vehicleType);
         }
 
         // CUSTOMER ARRAYS DONE
@@ -81,9 +83,10 @@ public class WinterTireScheduler {
         // }
 
         // }
+        quickSortCustomerCalled(customerArray, 0, customerArray.length - 1);
 
         for (int i = 0; i < listOfCustomers.size(); i++) {
-            System.out.println(CustomerArray[i]);
+            System.out.println(customerArray[i]);
         }
 
     }
@@ -123,23 +126,35 @@ public class WinterTireScheduler {
     // }
 
     // -----------------------------
+    // Fuck quicksort im sorting //stop ur mentally ill
+    // -----------------------------
+    private static void sortCallDate(Customer[] customers) {
+
+        for (int i = 0; i < customers.length; i++) {
+
+        }
+
+    }
+
+    // -----------------------------
     // QUICKSORT DATES CALLED
     // -----------------------------
 
     private static void quickSortCustomerCalled(Customer[] customers, int start, int end) {
-        if (end <= start)
-            return;
+        if (start < end) {
+            int pivot = partitionCall(customers, start, end);
+            quickSortCustomerCalled(customers, start, pivot - 1);
+            quickSortCustomerCalled(customers, pivot + 1, end);
+        }
 
-        int pivot = partitionCall(customers, start, end);
-        quickSortCustomerCalled(customers, start, pivot - 1);
-        quickSortCustomerCalled(customers, pivot + 1, end);
     }
 
     private static int partitionCall(Customer[] customers, int start, int end) {
         Customer pivot = customers[end];
         int i = start - 1;
 
-        for (int j = start; j <= end - 1; j++) {
+        for (int j = start; j < end; j++) {
+
             if (customers[j].getDateCalled().isBefore(pivot.getDateCalled())) {
                 i++;
                 Customer temp = customers[i];
