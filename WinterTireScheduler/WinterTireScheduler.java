@@ -26,9 +26,9 @@ public class WinterTireScheduler {
                 listOfCustomers.add(listOfCustomers.size(), fixedLengthList);
             }
 
-            for (int i = 0; i < listOfCustomers.size(); i++) {
-                System.out.println(listOfCustomers.get(i));
-            }
+            // for (int i = 0; i < listOfCustomers.size(); i++) {
+            // System.out.println(listOfCustomers.get(i));
+            // }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,11 +83,53 @@ public class WinterTireScheduler {
         // }
 
         // }
+
+        // QUICKSORT CUSTOMERS ACCORDING TO DATE CALLED
         quickSortCustomerCalled(customerArray, 0, customerArray.length - 1);
 
-        for (int i = 0; i < listOfCustomers.size(); i++) {
-            System.out.println(customerArray[i]);
+        // Printing out the sorted array
+        // for (int i = 0; i < customerArray.length; i++) {
+        // System.out.println(customerArray[i]);
+        // }
+
+        ArrayList<Customer> carsRoundedAppts = new ArrayList<Customer>();
+        ArrayList<Customer> trucksRoundedAppts = new ArrayList<Customer>();
+
+        // Tested rounding
+        // System.out.println(customerArray[0].getDateRes());
+        // customerArray[0].setDateRes(customerArray[0].getDateRes().withMinute(0));
+        // System.out.println(customerArray[0].getDateRes());
+
+        // ADDING CARS/TRUCKS TO THEIR RESPECTIVE ARRAY LIST OF ROUNDED TIMES
+        for (int i = 0; i < customerArray.length; i++) {
+            if (customerArray[i].getVehicleType().equals("compact")
+                    || customerArray[i].getVehicleType().equals("medium")
+                    || customerArray[i].getVehicleType().equals("full-size")) {
+                carsRoundedAppts.add(customerArray[i]);
+            } else if (customerArray[i].getVehicleType().equals("class 1 truck")
+                    || customerArray[i].getVehicleType().equals("class 2 truck")) {
+                trucksRoundedAppts.add(customerArray[i]);
+            }
         }
+
+        roundCars(carsRoundedAppts);
+        roundTrucks(trucksRoundedAppts);
+
+        ArrayList<Customer> bay1 = new ArrayList<Customer>();
+        final int workHours = 12;
+
+        for (int i = 0 ; i < carsRoundedAppts.size() ; i++ ) {
+            if (carsRoundedAppts.get(i).getVehicleType().equals("compact")) {
+                if (bay1.size() < 24) { 
+                 bay1.add(carsRoundedAppts.get(i));   
+                } 
+            }
+        }
+        
+
+        // for (Customer customer : trucksRoundedAppts) {
+        // System.out.println(customer);
+        // }
 
     }
 
@@ -168,6 +210,36 @@ public class WinterTireScheduler {
         customers[end] = temp;
 
         return i + 1;
+    }
+
+    // METHOD TO ROUND APPOINTMENT TIMES TO NEAREST HALF HOUR FOR CARS
+    private static void roundCars(ArrayList<Customer> customers) {
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getDateRes().getMinute() < 15) {
+                customers.get(i).setDateRes(customers.get(i).getDateRes().withMinute(0));
+            } else if (customers.get(i).getDateRes().getMinute() < 45
+                    && customers.get(i).getDateRes().getMinute() >= 15) {
+                customers.get(i).setDateRes(
+                        customers.get(i).getDateRes().withMinute(30));
+            } else if (customers.get(i).getDateRes().getMinute() >= 45) {
+                customers.get(i).setDateRes(
+                        customers.get(i).getDateRes().withHour(customers.get(i).getDateRes().getHour() + 1));
+                customers.get(i).setDateRes(customers.get(i).getDateRes().withMinute(0));
+            }
+        }
+    }
+
+    // BASICALLY SAME SHIT BUT FOR TRUCKS ROUNDED TO NEAREST HOUR
+    private static void roundTrucks(ArrayList<Customer> customers) {
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getDateRes().getMinute() < 30) {
+                customers.get(i).setDateRes(customers.get(i).getDateRes().withMinute(0));
+            } else if (customers.get(i).getDateRes().getMinute() >= 30) {
+                customers.get(i).setDateRes(
+                        customers.get(i).getDateRes().withHour(customers.get(i).getDateRes().getHour() + 1));
+                customers.get(i).setDateRes(customers.get(i).getDateRes().withMinute(0));
+            }
+        }
     }
 
 }
